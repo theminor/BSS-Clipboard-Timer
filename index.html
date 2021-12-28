@@ -28,7 +28,45 @@
 	<input type="text" id="timer3RestartMessage" value="beesmasfeastcomplete" style="float: left; margin: 0em 1em;" />
 	<p>Cycle Complete Message</p>
 
+	<h1 style="font-weight: bold; font-size: 2em; font-family: Arial;">Current Clipboard</h1>
+	<input type="text" id="curClipboard" value="(checking)" style="float: left; margin: -1em 1em;" />
+
+
+
 	<script>
+		let timer1 = document.getElementById('timer1Time');
+		let timer2 = document.getElementById('timer2Time');
+		let timer3 = document.getElementById('timer3Time');
+		let clpbd = document.getElementById('curClipboard');
+
+		let timer1saved = timer1.value;
+		let timer2saved = timer2.value;
+		let timer3saved = timer3.value;
+
+		timer1.onblur = () => timer1.value = (Number(timer1.value) || timer1saved).toFixed(1);
+		timer2.onblur = () => timer2.value = (Number(timer2.value) || timer2saved).toFixed(1);
+		timer3.onblur = () => timer3.value = (Number(timer3.value) || timer3saved).toFixed(1);
+
+		
+
+		let tickInterval = setInterval(async () => {
+			timer1.value = (timer1.value - 0.1).toFixed(1);
+			timer2.value = (timer2.value - 0.1).toFixed(1);
+			timer3.value = (timer3.value - 0.1).toFixed(1);
+			
+			timer1saved = timer1.value;
+			timer2saved = timer2.value;
+			timer3saved = timer3.value;
+
+			clpbd.value = await navigator.clipboard.readText();
+			
+			// ** TO DO - timer elapsed methods
+
+
+		}, 6000);  // Tick every 0.1 Minutes
+
+
+
 	</script>
 </body>
 </html>
