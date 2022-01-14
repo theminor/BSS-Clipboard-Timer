@@ -19,15 +19,15 @@ Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
 $Form                            = New-Object System.Windows.Forms.Form
-$Form.ClientSize                 = New-Object System.Drawing.Point(250,165)
+$Form.ClientSize                 = New-Object System.Drawing.Point(250,215)
 $Form.text                       = "BSS"
 $Form.TopMost                    = $false
 $Form.FormBorderStyle            = [System.Windows.Forms.FormBorderStyle]::Fixed3D
 
 $grpBox                          = New-Object System.Windows.Forms.Groupbox
-$grpBox.height                   = 120
+$grpBox.height                   = 165
 $grpBox.width                    = 235
-$grpBox.location                 = New-Object System.Drawing.Point(8,8)
+$grpBox.location                 = New-Object System.Drawing.Point(8,5)
 
 $wcTimerLabel                    = New-Object System.Windows.Forms.Label
 $wcTimerLabel.text               = "Wealth Clock (0x):"
@@ -77,28 +77,60 @@ $gbreadTime.height               = 20
 $gbreadTime.location             = New-Object System.Drawing.Point(175,60)
 $gbreadTime.Font                 = New-Object System.Drawing.Font('Microsoft Sans Serif',10)
 
-$hdayTimerLabel                = New-Object System.Windows.Forms.Label
-$hdayTimerLabel.text           = "Honeyday Candles (0x):"
-$hdayTimerLabel.AutoSize       = $true
-$hdayTimerLabel.width          = 25
-$hdayTimerLabel.height         = 10
-$hdayTimerLabel.location       = New-Object System.Drawing.Point(10,88)
-$hdayTimerLabel.Font           = New-Object System.Drawing.Font('Microsoft Sans Serif',10)
+$hdayTimerLabel                  = New-Object System.Windows.Forms.Label
+$hdayTimerLabel.text             = "Honeyday Candles (0x):"
+$hdayTimerLabel.AutoSize         = $true
+$hdayTimerLabel.width            = 25
+$hdayTimerLabel.height           = 10
+$hdayTimerLabel.location         = New-Object System.Drawing.Point(10,88)
+$hdayTimerLabel.Font             = New-Object System.Drawing.Font('Microsoft Sans Serif',10)
 
-$hdayTime                      = New-Object System.Windows.Forms.TextBox
-$hdayTime.multiline            = $false
-$hdayTime.text                 = "240"
-$hdayTime.width                = 50
-$hdayTime.height               = 20
-$hdayTime.location             = New-Object System.Drawing.Point(175,85)
-$hdayTime.Font                 = New-Object System.Drawing.Font('Microsoft Sans Serif',10)
+$hdayTime                        = New-Object System.Windows.Forms.TextBox
+$hdayTime.multiline              = $false
+$hdayTime.text                   = "240"
+$hdayTime.width                  = 50
+$hdayTime.height                 = 20
+$hdayTime.location               = New-Object System.Drawing.Point(175,85)
+$hdayTime.Font                   = New-Object System.Drawing.Font('Microsoft Sans Serif',10)
+
+$samovarTimerLabel               = New-Object System.Windows.Forms.Label
+$samovarTimerLabel.text          = "Samovar (0x):"
+$samovarTimerLabel.AutoSize      = $true
+$samovarTimerLabel.width         = 25
+$samovarTimerLabel.height        = 10
+$samovarTimerLabel.location      = New-Object System.Drawing.Point(10,113)
+$samovarTimerLabel.Font          = New-Object System.Drawing.Font('Microsoft Sans Serif',10)
+
+$samovarTime                     = New-Object System.Windows.Forms.TextBox
+$samovarTime.multiline           = $false
+$samovarTime.text                = "360"
+$samovarTime.width               = 50
+$samovarTime.height              = 20
+$samovarTime.location            = New-Object System.Drawing.Point(175,110)
+$samovarTime.Font                = New-Object System.Drawing.Font('Microsoft Sans Serif',10)
+
+$lidArtTimerLabel                = New-Object System.Windows.Forms.Label
+$lidArtTimerLabel.text           = "Onett Lid Art (0x):"
+$lidArtTimerLabel.AutoSize       = $true
+$lidArtTimerLabel.width          = 25
+$lidArtTimerLabel.height         = 10
+$lidArtTimerLabel.location       = New-Object System.Drawing.Point(10,138)
+$lidArtTimerLabel.Font           = New-Object System.Drawing.Font('Microsoft Sans Serif',10)
+
+$lidArtTime                      = New-Object System.Windows.Forms.TextBox
+$lidArtTime.multiline            = $false
+$lidArtTime.text                 = "480"
+$lidArtTime.width                = 50
+$lidArtTime.height               = 20
+$lidArtTime.location             = New-Object System.Drawing.Point(175,135)
+$lidArtTime.Font                 = New-Object System.Drawing.Font('Microsoft Sans Serif',10)
 
 $clpLabel                        = New-Object System.Windows.Forms.Label
 $clpLabel.text                   = "Clipboard:"
 $clpLabel.AutoSize               = $true
 $clpLabel.width                  = 25
 $clpLabel.height                 = 10
-$clpLabel.location               = New-Object System.Drawing.Point(7,138)
+$clpLabel.location               = New-Object System.Drawing.Point(7,185)
 $clpLabel.Font                   = New-Object System.Drawing.Font('Microsoft Sans Serif',10)
 
 $clpTxt                          = New-Object System.Windows.Forms.TextBox
@@ -106,10 +138,10 @@ $clpTxt.multiline                = $false
 $clpTxt.text                     = "(checking...)"
 $clpTxt.width                    = 165
 $clpTxt.height                   = 20
-$clpTxt.location                 = New-Object System.Drawing.Point(75,135)
+$clpTxt.location                 = New-Object System.Drawing.Point(75,182)
 $clpTxt.Font                     = New-Object System.Drawing.Font('Microsoft Sans Serif',10)
 
-$grpBox.controls.AddRange(@($wcTime,$wcTimerLabel,$bmasTimerLabel,$bmasTime,$gbreadTimerLabel,$gbreadTime,$hdayTimerLabel,$hdayTime))
+$grpBox.controls.AddRange(@($wcTime,$wcTimerLabel,$bmasTimerLabel,$bmasTime,$gbreadTimerLabel,$gbreadTime,$hdayTimerLabel,$hdayTime,$samovarTimerLabel,$samovarTime,$lidArtTimerLabel,$lidArtTime))
 $Form.controls.AddRange(@($grpBox,$clpLabel,$clpTxt))
 
 # Backup variables for textbox input errors
@@ -117,12 +149,16 @@ $global:wcTimeBak = $wcTime.text
 $global:bmasTimeBak = $bmasTime.text
 $global:gbreadTimeBak = $gbreadTime.text
 $global:hdayTimeBak = $hdayTime.text
+$global:samovarTimeBak = $hdayTime.text
+$global:lidArtTimeBak = $hdayTime.text
 
 # Global counters for cycles completed of each timer
 $global:wcCycles = 0
 $global:bmasCycles = 0
 $global:gbreadCycles = 0
 $global:hdayCycles = 0
+$global:samovarCycles = 0
+$global:lidArtCycles = 0
 
 $wcTimerLabel.Add_Click({ 
     $global:wcCycles = 0
@@ -140,6 +176,14 @@ $hdayTimerLabel.Add_Click({
     $global:hdayCycles = 0
     $hdayTimerLabel.text = "Honeyday Candles (0x):"
 })
+$samovarTimerLabel.Add_Click({ 
+    $global:samovarCycles = 0
+    $samovarTimerLabel.text = "Samovar (0x):"
+})
+$lidArtTimerLabel.Add_Click({ 
+    $global:lidArtCycles = 0
+    $lidArtTimerLabel.text = "Onett Lid Art (0x):"
+})
 $clpLabel.Add_Click({
     if ($clpTxt.text -eq "gingerbreadelapsed") {
         Set-Clipboard -Value 'gingerbreaddone'
@@ -153,7 +197,7 @@ $clpLabel.Add_Click({
     $clpTxt.text = Get-Clipboard
 })
 
-# Create a timer.
+# Create the timer.
 $timer = New-Object system.Windows.Forms.Timer
 $timer.Interval = 6000  # 0.1 minutes
 
@@ -177,10 +221,10 @@ $timer.Add_Tick({
         $bmasTimerLabel.text = "Beesmas Feast (" + $global:bmasCycles + "x):"
     }
     if ($clpTxt.text -eq 'gingerbreaddone') {
-        $gbreadTime.text = "120"
-        Set-Clipboard -Value 'timers pending'
-        $global:gbreadCycles = $global:gbreadCycles + 1
-        $gbreadTimerLabel.text = "Gingerbread House (" + $global:gbreadCycles + "x):"
+        # $gbreadTime.text = "120"
+        # Set-Clipboard -Value 'timers pending'
+        # $global:gbreadCycles = $global:gbreadCycles + 1
+        # $gbreadTimerLabel.text = "Gingerbread House (" + $global:gbreadCycles + "x):"
     }
     if ($clpTxt.text -eq 'honeydaydone') {
         $hdayTime.text = "240"
@@ -188,11 +232,39 @@ $timer.Add_Tick({
         $global:hdayCycles = $global:hdayCycles + 1
         $hdayTimerLabel.text = "Honeyday Candles (" + $global:hdayCycles + "x):"
     }
+    if ($clpTxt.text -eq 'samovardone') {
+        # $samovarTime.text = "360"
+        # Set-Clipboard -Value 'timers pending'
+        # $global:samovarCycles = $global:samovarCycles + 1
+        # $samovarTimerLabel.text = "Samovar (" + $global:samovarCycles + "x):"
+    }
+    if ($clpTxt.text -eq 'lidartdone') {
+        # $lidArtTime.text = "480"
+        # Set-Clipboard -Value 'timers pending'
+        # $global:lidArtCycles = $global:lidArtCycles + 1
+        # $lidArtTimerLabel.text = "Onett Lid Art (" + $global:hdayCycles + "x):"
+    }
 
+    if (($lidArtTime.text -as [decimal]) -or ($lidArtTime.text -eq 0) -or ($lidArtTime.text -eq "0.0")) {
+        $lidArtTime.text = [decimal]($lidArtTime.text) - 0.1 
+        if ([decimal]($lidArtTime.text) -lt 0) {
+            # Set-Clipboard -Value 'lidartelapsed'
+        }
+    } else {
+        $lidArtTime.text = $global:lidArtTimeBak
+    }
+    if (($samovarTime.text -as [decimal]) -or ($samovarTime.text -eq 0) -or ($samovarTime.text -eq "0.0")) {
+        $samovarTime.text = [decimal]($samovarTime.text) - 0.1 
+        if ([decimal]($samovarTime.text) -lt 0) {
+            # Set-Clipboard -Value 'samovarelapsed'
+        }
+    } else {
+        $samovarTime.text = $global:samovarTimeBak
+    }
     if (($gbreadTime.text -as [decimal]) -or ($gbreadTime.text -eq 0) -or ($gbreadTime.text -eq "0.0")) {
         $gbreadTime.text = [decimal]($gbreadTime.text) - 0.1 
         if ([decimal]($gbreadTime.text) -lt 0) {
-            Set-Clipboard -Value 'gingerbreadelapsed'
+            # Set-Clipboard -Value 'gingerbreadelapsed'
         }
     } else {
         $gbreadTime.text = $global:gbreadTimeBak
@@ -226,6 +298,8 @@ $timer.Add_Tick({
     $global:bmasTimeBak = $bmasTime.text
     $global:gbreadTimeBak = $gbreadTime.text
     $global:hdayTimeBak = $hdayTime.text
+    $global:samovarTimeBak = $samovarTime.text
+    $global:lidArtTimeBak = $lidArtTime.text
 
     $clpTxt.text = Get-Clipboard
 })
