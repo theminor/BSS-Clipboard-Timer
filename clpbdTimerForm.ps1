@@ -233,10 +233,10 @@ $timer.Add_Tick({
         $hdayTimerLabel.text = "Honeyday Candles (" + $global:hdayCycles + "x):"
     }
     if ($clpTxt.text -eq 'samovardone') {
-        # $samovarTime.text = "360"
-        # Set-Clipboard -Value 'timers pending'
-        # $global:samovarCycles = $global:samovarCycles + 1
-        # $samovarTimerLabel.text = "Samovar (" + $global:samovarCycles + "x):"
+        $samovarTime.text = "360"
+        Set-Clipboard -Value 'timers pending'
+        $global:samovarCycles = $global:samovarCycles + 1
+        $samovarTimerLabel.text = "Samovar (" + $global:samovarCycles + "x):"
     }
     if ($clpTxt.text -eq 'lidartdone') {
         # $lidArtTime.text = "480"
@@ -256,7 +256,7 @@ $timer.Add_Tick({
     if (($samovarTime.text -as [decimal]) -or ($samovarTime.text -eq 0) -or ($samovarTime.text -eq "0.0")) {
         $samovarTime.text = [decimal]($samovarTime.text) - 0.1 
         if ([decimal]($samovarTime.text) -lt 0) {
-            # Set-Clipboard -Value 'samovarelapsed'
+            Set-Clipboard -Value 'samovarelapsed'
         }
     } else {
         $samovarTime.text = $global:samovarTimeBak
