@@ -193,7 +193,11 @@ $clpLabel.Add_Click({
         Set-Clipboard -Value 'clockdone'
     } elseif ($clpTxt.text -eq "beesmasfeastelapsed") {
         Set-Clipboard -Value 'beesmasfeastdone'
-    }
+    } elseif ($clpTxt.text -eq "samovarelapsed") {
+        Set-Clipboard -Value 'samovardone'
+    } # elseif ($clpTxt.text -eq "lidartelapsed") {
+    #     Set-Clipboard -Value 'lidartdone'
+    # }
     $clpTxt.text = Get-Clipboard
 })
 
